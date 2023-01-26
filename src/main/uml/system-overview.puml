@@ -1,0 +1,23 @@
+@startuml
+
+actor user as "User"
+node svc1 as "Service One"
+node svc2 as "Service Two"
+node svc3 as "Service Three"
+database pgsql as "PostgreSQL"
+queue q as "RabbitMQ"
+database otel as "OTel Collector"
+node jaeger as "Jaeger"
+
+user <--> svc1 : UI
+svc1 <--> pgsql : user info
+svc1 <-right-> svc2 : external service call
+svc2 -right-> q : async message
+q -right-> svc3 : async service call
+
+svc1 --> otel : telemetry
+svc2 --> otel : telemetry
+svc3 --> otel : telemetry
+otel <--> jaeger
+
+@enduml

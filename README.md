@@ -1,2 +1,2 @@
 # otel-example
-OpenTelemetry Examples
+OpenTelemetry Example
