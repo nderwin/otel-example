@@ -1,0 +1,2 @@
+id,email,username,password,firstname,lastname,admin,confirmationcode,status
+0,duke@java.com,duke@java.com,$2a$10$5foCuCZWCrHkziUcHSdHMOvacNur8koaeGyyKrnSsbhf9yQOv61pC,Duke,Java,TRUE,9da0e992-5865-43ee-802e-bc96bc9fbf6f,REGISTERED

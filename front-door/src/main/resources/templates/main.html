@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{#insert title /}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {#insert moreStyles /}
+        
+        {#insert moreScripts /}
+    </head>
+    <body>
+        <nav>
+            <div>
+                {#if inject:user}
+                {#if inject:user.admin}<span>You are an administrator</span>{/if}
+                {#user inject:user img=false size=20 /}
+                {/if}
+            </div>
+            
+            <div>
+                <ul>
+                    {#if !inject:user}
+                    <li><a href="{uri:AuthenticationResource.login()}">Login / Register</a></li>
+                    {#else}
+                    <li><a href="{uri:ApplicationResource.index()}">Home</a></li>
+                    <li><a href="{uri:RenardeSecurityController.logout()}">Logout</a></li>
+                    {/if}
+                </ul>
+            </div>
+        </nav>
+        <main>
+            {#if flash:message}
+                <div class="alert alert-{flash:messageType ?: 'success'}">
+                    {flash:message}
+                </div>
+            {/if}
+            {#insert /}
+        </main>
+        <div>
+            
+        </div>
+    </body>
+</html>

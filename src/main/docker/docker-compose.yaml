@@ -30,7 +30,9 @@ services:
     ports:
       - "5432:5432"
     environment:
+      POSTGRES_USER: example
       POSTGRES_PASSWORD: example
+      POSTGRES_DB: example
       
   mq:
     image: rabbitmq:3.11.7-management

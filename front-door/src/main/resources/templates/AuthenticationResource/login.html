@@ -1,0 +1,32 @@
+{#include main.html }
+{#title}Authentication{/title}
+
+<div class="row">
+    <div class="col-md-5">
+        {#form uri:AuthenticationResource.manualLogin()}
+        <fieldset>
+            <legend>Login</legend>
+            {#formElement name="userName" label="User Name"}
+            {#input name="userName"/}
+            {/formElement}
+            {#formElement name="password" label="Password"}
+            {#input name="password" type="password"/}
+            {/formElement}
+            <button type="submit" class="btn btn-primary">AuthenticationResource</button>
+        </fieldset>
+        {/form}
+    </div>
+    <div class="col-md-5">
+        {#form uri:AuthenticationResource.register()}
+        <fieldset>
+            <legend>Register</legend>
+            {#formElement name="email" label="Email"}
+            {#input name="email"/}
+            {/formElement}
+            <button type="submit" class="btn btn-primary">Register</button>
+        </fieldset>
+        {/form}
+    </div>
+</div>
+
+{/include}
