@@ -1,0 +1,47 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog
+    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="create-and-bootstrap-users" author="nde">
+        <createSequence sequenceName="seq_user" />
+        
+        <createTable tableName="user">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user" />
+            </column>
+            <column name="email" type="VARCHAR">
+                <constraints nullable="false" />
+            </column>
+            <column name="username" type="VARCHAR">
+                <constraints nullable="false" unique="true" uniqueConstraintName="udx_user_username" />
+            </column>
+            <column name="password" type="VARCHAR">
+                <constraints nullable="false" />
+            </column>
+            <column name="firstname" type="VARCHAR" />
+            <column name="lastname" type="VARCHAR" />
+            <column name="admin" type="BOOLEAN">
+                <constraints nullable="false" />
+            </column>
+            <column name="confirmationcode" type="VARCHAR">
+                <constraints nullable="false" unique="true" uniqueConstraintName="udx_user_confirmationcode" />
+            </column>
+            <column name="status" type="VARCHAR">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        
+        <loadData tableName="user" file="user.csv" relativeToChangelogFile="true" />
+        
+        <rollback>
+            <dropTable tableName="user" />
+            
+            <dropSequence sequenceName="seq_user" />
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

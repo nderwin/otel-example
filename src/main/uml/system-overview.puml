@@ -1,7 +1,7 @@
 @startuml
 
 actor user as "User"
-node svc1 as "Service One"
+node svc1 as "Front Door"
 node svc2 as "Service Two"
 node svc3 as "Service Three"
 database pgsql as "PostgreSQL"
